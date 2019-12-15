@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+management:
+  endpoint:
+    info:
+      enabled: true
+
+info:
+  app:
+    name: kafkatest
