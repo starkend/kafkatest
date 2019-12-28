@@ -11,11 +11,16 @@ public class Consumer {
 
     @KafkaListener(topics = "test", groupId = "group_id")
     public void consume(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s", message));
+        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, "test"));
     }
 
     @KafkaListener(topics = "user", groupId = "group_id")
     public void consumeUserMessage(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s", message));
+        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, "user"));
+    }
+
+    @KafkaListener(topics = "foo", groupId = "group_id")
+    public void consumeFooMessage(String message) {
+        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, "foo"));
     }
 }
