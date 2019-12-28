@@ -16,8 +16,9 @@ Kafka with Spring Boot proof of concept
 - **Start Kafka server**
   - cd kafka_2.12-2.3.0
   - bin/kafka-server-start.sh config/server.properties
-- **Create "test" Topic
+- **Optional:** 
+  - Create "test" Topic in Kafka CLI
   - bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
-
+ 
   
    

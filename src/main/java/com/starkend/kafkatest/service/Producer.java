@@ -27,5 +27,4 @@ public class Producer {
         logger.info(String.format("$$ -> Producing message --> %s", message));
         this.kafkaTemplate.send(USER_TOPIC, message);
     }
-
 }
