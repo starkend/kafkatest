@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import static org.springframework.kafka.support.KafkaHeaders.TOPIC;
-
 @Service
 public class Producer {
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);

@@ -16,7 +16,7 @@ public class KafkaController {
         this.producer = producer;
     }
 
-    @GetMapping(value = "/publish")
+    @GetMapping(value = "/test")
     public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
         this.producer.sendMessage(message);
     }
