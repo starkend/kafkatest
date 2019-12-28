@@ -20,4 +20,9 @@ public class KafkaController {
     public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
         this.producer.sendMessage(message);
     }
+
+    @GetMapping(value = "/user")
+    public void sendMessageToKafkaUserTopic(@RequestParam("message") String message) {
+        this.producer.sendUserMessage(message);
+    }
 }

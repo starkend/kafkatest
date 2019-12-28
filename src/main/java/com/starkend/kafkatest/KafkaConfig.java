@@ -1,5 +1,9 @@
 package com.starkend.kafkatest;
 
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.CreateTopicsResult;
+import org.apache.kafka.clients.admin.KafkaAdminClient;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.SpringBootConfiguration;
@@ -10,6 +14,8 @@ import org.springframework.kafka.core.ProducerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootConfiguration
 public class KafkaConfig {
@@ -17,6 +23,15 @@ public class KafkaConfig {
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         ProducerFactory<String, String> pf = new DefaultKafkaProducerFactory<>(senderProps());
+
+        AdminClient adminClient = KafkaAdminClient.create(senderProps());
+
+        CreateTopicsResult res = adminClient.createTopics(
+                Stream.of("foo", "test", "user").map(
+                        name -> new NewTopic(name, 1, (short) 1)
+                ).collect(Collectors.toList())
+        );
+
         return new KafkaTemplate<>(pf);
     }
 
