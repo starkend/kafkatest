@@ -31,4 +31,10 @@ public class KafkaController {
     public void sendMessageToKafkaFooTopic(@RequestParam("message") String message) {
         this.producer.sendMessage(message, KafkaTopic.FOO.getName());
     }
+
+    @GetMapping(value = "/generic")
+    public void sendMessageGeneric(@RequestParam("topic") String topic,
+            @RequestParam("message") String message) {
+        this.producer.sendMessage(message, topic);
+    }
 }
