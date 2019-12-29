@@ -1,5 +1,6 @@
 package com.starkend.kafkatest.service;
 
+import com.starkend.kafkatest.topic.KafkaTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,16 +12,16 @@ public class Consumer {
 
     @KafkaListener(topics = "test", groupId = "group_id")
     public void consume(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, "test"));
+        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.TEST.getName()));
     }
 
     @KafkaListener(topics = "user", groupId = "group_id")
     public void consumeUserMessage(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, "user"));
+        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.USER.getName()));
     }
 
     @KafkaListener(topics = "foo", groupId = "group_id")
     public void consumeFooMessage(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, "foo"));
+        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.FOO.getName()));
     }
 }

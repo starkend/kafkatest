@@ -1,5 +1,6 @@
 package com.starkend.kafkatest;
 
+import com.starkend.kafkatest.topic.KafkaTopic;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.CreateTopicsResult;
 import org.apache.kafka.clients.admin.KafkaAdminClient;
@@ -25,7 +26,7 @@ public class KafkaConfig {
         ProducerFactory<String, String> pf = new DefaultKafkaProducerFactory<>(senderProps());
         AdminClient adminClient = KafkaAdminClient.create(senderProps());
         CreateTopicsResult res = adminClient.createTopics(
-                Stream.of("foo", "test", "user").map(
+                Stream.of(KafkaTopic.FOO.getName(), KafkaTopic.TEST.getName(), KafkaTopic.USER.getName()).map(
                         name -> new NewTopic(name, 1, (short) 1)
                 ).collect(Collectors.toList())
         );

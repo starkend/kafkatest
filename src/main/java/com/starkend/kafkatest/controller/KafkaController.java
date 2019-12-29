@@ -34,7 +34,7 @@ public class KafkaController {
 
     @GetMapping(value = "/generic")
     public void sendMessageGeneric(@RequestParam("topic") String topic,
-            @RequestParam("message") String message) {
+                                   @RequestParam("message") String message) {
         this.producer.sendMessage(message, topic);
     }
 }
