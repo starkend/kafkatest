@@ -2,6 +2,7 @@ package com.starkend.kafkatest.controller;
 
 
 import com.starkend.kafkatest.service.Producer;
+import com.starkend.kafkatest.topic.KafkaTopic;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,16 +19,16 @@ public class KafkaController {
 
     @GetMapping(value = "/test")
     public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
-        this.producer.sendMessage(message);
+        this.producer.sendMessage(message, KafkaTopic.TEST.getName());
     }
 
     @GetMapping(value = "/user")
     public void sendMessageToKafkaUserTopic(@RequestParam("message") String message) {
-        this.producer.sendUserMessage(message);
+        this.producer.sendMessage(message, KafkaTopic.USER.getName());
     }
 
     @GetMapping(value = "/foo")
     public void sendMessageToKafkaFooTopic(@RequestParam("message") String message) {
-        this.producer.sendFooMessage(message);
+        this.producer.sendMessage(message, KafkaTopic.FOO.getName());
     }
 }
