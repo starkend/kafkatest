@@ -25,9 +25,10 @@ public class KafkaConfig {
     public KafkaTemplate<String, String> kafkaTemplate() {
         ProducerFactory<String, String> pf = new DefaultKafkaProducerFactory<>(senderProps());
         AdminClient adminClient = KafkaAdminClient.create(senderProps());
+
         CreateTopicsResult res = adminClient.createTopics(
-                Stream.of(KafkaTopic.FOO.getName(), KafkaTopic.TEST.getName(), KafkaTopic.USER.getName()).map(
-                        name -> new NewTopic(name, 1, (short) 1)
+                Stream.of(KafkaTopic.values()).map(
+                        name -> new NewTopic(name.getName(), 1, (short) 1)
                 ).collect(Collectors.toList())
         );
 
