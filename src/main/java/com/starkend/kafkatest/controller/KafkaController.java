@@ -3,10 +3,9 @@ package com.starkend.kafkatest.controller;
 
 import com.starkend.kafkatest.service.Producer;
 import com.starkend.kafkatest.topic.KafkaTopic;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(value = "/kafka")
@@ -34,6 +33,12 @@ public class KafkaController {
 
     @GetMapping(value = "/generic")
     public void sendMessageGeneric(@RequestParam("topic") String topic,
+                                   @RequestParam("message") String message) {
+        this.producer.sendMessage(message, topic);
+    }
+
+    @GetMapping(value = "/gen/{topic}")
+    public void sendMessageGen(@PathVariable("topic") String topic,
                                    @RequestParam("message") String message) {
         this.producer.sendMessage(message, topic);
     }
