@@ -13,22 +13,7 @@ public class KafkaController {
         this.producer = producer;
     }
 
-/*    @GetMapping(value = "/test")
-    public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
-        this.producer.sendMessage(message, KafkaTopic.TEST.getName());
-    }
-
-    @GetMapping(value = "/user")
-    public void sendMessageToKafkaUserTopic(@RequestParam("message") String message) {
-        this.producer.sendMessage(message, KafkaTopic.USER.getName());
-    }
-
-    @GetMapping(value = "/foo")
-    public void sendMessageToKafkaFooTopic(@RequestParam("message") String message) {
-        this.producer.sendMessage(message, KafkaTopic.FOO.getName());
-    }*/
-
-    @GetMapping(value = "/gen/{topic}")
+    @GetMapping(value = "{topic}")
     public void sendMessageGen(@PathVariable("topic") String topic,
                                @RequestParam("message") String message) {
         this.producer.sendMessage(message, topic);
