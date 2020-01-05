@@ -12,11 +12,9 @@ public class TransformConsumer {
     private final Logger logger = LoggerFactory.getLogger(TransformConsumer.class);
 
     @KafkaListener(topics = "test", groupId = "group_id")
-    public void consume(String message) {
+    public void consumeTestMessage(String message) {
         logger.info(String.format("$$ -> TransformConsumer Original Message -> %s from Topic --> %s", message, KafkaTopic.TEST.getName()));
-
         String transformMessage = message.toUpperCase();
-
         logger.info(String.format("$$ -> TransformConsumer Transformed Message -> %s from Topic --> %s", transformMessage, KafkaTopic.TEST.getName()));
     }
 }
