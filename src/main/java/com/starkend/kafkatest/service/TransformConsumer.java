@@ -13,7 +13,6 @@ public class TransformConsumer extends AbstractConsumer {
 
     @KafkaListener(topics = "test", groupId = "group_id")
     public void consumeTestMessage(String message) {
-//        logger.info(String.format("$$ -> TransformConsumer Original Message -> %s from Topic --> %s", message, KafkaTopic.TEST.getName()));
         logger.info(getFormat(message, KafkaTopic.TEST));
         String transformMessage = message.toUpperCase();
         logger.info(getFormat(transformMessage, KafkaTopic.TEST));

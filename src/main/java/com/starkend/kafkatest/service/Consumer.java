@@ -7,7 +7,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Consumer extends AbstractConsumer{
+public class Consumer extends AbstractConsumer {
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
     @KafkaListener(topics = "user", groupId = "group_id")
@@ -24,6 +24,4 @@ public class Consumer extends AbstractConsumer{
     public void consumeDefaultMessage(String message) {
         logger.info(getFormat(message, KafkaTopic.DEFAULT));
     }
-
-
 }
