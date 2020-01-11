@@ -19,4 +19,9 @@ public class Consumer {
     public void consumeFooMessage(String message) {
         logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.FOO.getName()));
     }
+
+    @KafkaListener(topics = "default", groupId = "group_id")
+    public void consumeDefaultMessage(String message) {
+        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.DEFAULT.getName()));
+    }
 }

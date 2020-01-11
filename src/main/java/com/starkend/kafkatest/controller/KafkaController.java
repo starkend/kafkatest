@@ -2,6 +2,7 @@ package com.starkend.kafkatest.controller;
 
 
 import com.starkend.kafkatest.service.Producer;
+import com.starkend.kafkatest.topic.KafkaTopic;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,4 +19,10 @@ public class KafkaController {
                                @RequestParam("message") String message) {
         this.producer.sendMessage(message, topic);
     }
+
+    @GetMapping
+    public void sendDefaultMessageGen(@RequestParam("message") String message) {
+        this.producer.sendMessage(message, KafkaTopic.DEFAULT.getName());
+    }
+
 }

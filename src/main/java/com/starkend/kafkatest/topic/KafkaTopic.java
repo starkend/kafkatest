@@ -3,7 +3,8 @@ package com.starkend.kafkatest.topic;
 public enum KafkaTopic {
     TEST("test"),
     FOO("foo"),
-    USER("user");
+    USER("user"),
+    DEFAULT("default");
 
     private String name;
 
