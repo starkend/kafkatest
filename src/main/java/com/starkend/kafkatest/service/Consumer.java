@@ -7,7 +7,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Consumer {
+public class Consumer extends AbstractConsumer{
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
     @KafkaListener(topics = "user", groupId = "group_id")
@@ -25,7 +25,5 @@ public class Consumer {
         logger.info(getFormat(message, KafkaTopic.DEFAULT));
     }
 
-    private String getFormat(String message, KafkaTopic user) {
-        return String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, user.getName());
-    }
+
 }

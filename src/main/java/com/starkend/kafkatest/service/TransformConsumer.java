@@ -7,14 +7,15 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TransformConsumer {
+public class TransformConsumer extends AbstractConsumer {
 
     private final Logger logger = LoggerFactory.getLogger(TransformConsumer.class);
 
     @KafkaListener(topics = "test", groupId = "group_id")
     public void consumeTestMessage(String message) {
-        logger.info(String.format("$$ -> TransformConsumer Original Message -> %s from Topic --> %s", message, KafkaTopic.TEST.getName()));
+//        logger.info(String.format("$$ -> TransformConsumer Original Message -> %s from Topic --> %s", message, KafkaTopic.TEST.getName()));
+        logger.info(getFormat(message, KafkaTopic.TEST));
         String transformMessage = message.toUpperCase();
-        logger.info(String.format("$$ -> TransformConsumer Transformed Message -> %s from Topic --> %s", transformMessage, KafkaTopic.TEST.getName()));
+        logger.info(getFormat(transformMessage, KafkaTopic.TEST));
     }
 }
