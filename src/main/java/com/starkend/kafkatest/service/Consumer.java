@@ -12,16 +12,20 @@ public class Consumer {
 
     @KafkaListener(topics = "user", groupId = "group_id")
     public void consumeUserMessage(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.USER.getName()));
+        logger.info(getFormat(message, KafkaTopic.USER));
     }
 
     @KafkaListener(topics = "foo", groupId = "group_id")
     public void consumeFooMessage(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.FOO.getName()));
+        logger.info(getFormat(message, KafkaTopic.FOO));
     }
 
     @KafkaListener(topics = "default", groupId = "group_id")
     public void consumeDefaultMessage(String message) {
-        logger.info(String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, KafkaTopic.DEFAULT.getName()));
+        logger.info(getFormat(message, KafkaTopic.DEFAULT));
+    }
+
+    private String getFormat(String message, KafkaTopic user) {
+        return String.format("$$ -> Consumed Message -> %s from Topic --> %s", message, user.getName());
     }
 }
